@@ -46,9 +46,9 @@ function getCurrentBaseUrl()
 
         setBaseUrl(domainNameArray[domainNameArray.length-2]+'.'+domainNameArray[domainNameArray.length-1]);
     });
-
-
 }
+
+
 
 
 function stopTracking()

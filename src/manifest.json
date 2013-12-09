@@ -3,7 +3,7 @@
 
   "name": "Downloader",
   "description": "This extension downloads everything on the current page",
-  "version": "0.1",
+  "version": "0.2",
 
    "permissions": [
         "webRequest",
@@ -18,12 +18,12 @@
    ],
 
     "browser_action": {
-        "default_icon": "downloader_icon.png",
-        "default_popup": "popup.html"
+        "default_icon": "images/downloader_icon.png",
+        "default_popup": "view/popup.html"
     },
     
     "background" :{
-      "scripts": ["background.js"]
+      "scripts": ["downloader/DownloaderUtil.js", "downloader/Downloader.js", "downloader/background.js"]
   }
 
 }
