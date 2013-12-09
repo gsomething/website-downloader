@@ -1,23 +1,55 @@
 
 var trackedItems= [];
-var rootDirectory = "equalexperts.com/";
-var allowedUrls= ["*://*.equalexperts.com/*"];
+var rootDirectory = "";
+var allowedUrls= [];
 var tracking= false;
 
 
 function startTracking(){
 	console.log("started tracking in BG!");
+
+    getCurrentBaseUrl();
+
     tracking= true;
 
-   // chrome.browsingData.remove({}, {},function(){
-   // {
-        chrome.webRequest.onBeforeRequest.addListener(
-            track,
-            {urls: allowedUrls},
-            ["blocking"])
-
-   // });
+    chrome.webRequest.onBeforeRequest.addListener(
+        track,
+        {urls: allowedUrls},
+        ["blocking"])
 }
+
+function setBaseUrl(currentBasUrl)
+{
+    rootDirectory= currentBasUrl+'/';
+    allowedUrls= ["*://*.'+currentBaseUrl+'/*"];
+
+    alert('Beginning capture for domain: '+currentBasUrl);
+}
+
+function getCurrentBaseUrl()
+{
+    var baseUrl;
+
+    chrome.tabs.getSelected(null, function(tab) {
+        var tabId = tab.id;
+        var tabUrl = tab.url;
+
+        http://[something (n...)].[domainname.[something]]/
+
+        // [^w{3}\.]([a-zA-Z0-9]([a-zA-Z0-9\-]{0,65}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}
+
+
+
+        //var baseUrl= tabUrl.match(/[^w{3}\.]([a-zA-Z0-9]([a-zA-Z0-9\-]{0,65}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}/gim)[0];
+
+        var domainNameArray= tabUrl.split('/')[2].split('.');
+
+        setBaseUrl(domainNameArray[domainNameArray.length-2]+'.'+domainNameArray[domainNameArray.length-1]);
+    });
+
+
+}
+
 
 function stopTracking()
 {
