@@ -15,14 +15,16 @@ describe("Downloader", function() {
             url: "http://subdomain.domain.co.uk"
         }
 
-        spyOn(downloaderUtil,'setBaseUrl');
+        spyOn(downloaderUtil, 'setBaseUrlArray');
 
         downloaderUtil.extractUrlFromTab(mockTab);
 
-        expect(downloaderUtil.setBaseUrl).toHaveBeenCalledWith(['subdomain','domain','co','uk']);
-
+        expect(downloaderUtil.setBaseUrlArray).toHaveBeenCalledWith(['subdomain','domain','co','uk']);
     });
 
-
-
+    it("should set the url", function()
+    {
+        downloaderUtil.setBaseUrlArray(['a','b','z']);
+        expect(downloaderUtil.baseUrlArray).toEqual(['a','b','z']);
+    });
 });

@@ -2,16 +2,18 @@ var DownloaderUtil= function(){}
 
 DownloaderUtil.prototype=
 {
+    baseUrlArray: null,
+
     extractUrlFromTab: function(tab)
     {
         var tabUrl = tab.url;
         var domainNameArray= tabUrl.split('/')[2].split('.');
 
-        this.setBaseUrl(domainNameArray);
+        this.setBaseUrlArray(domainNameArray);
     },
 
-    setBaseUrl: function(baseUrl)
+    setBaseUrlArray: function(baseUrlArray)
     {
-
+        this.baseUrlArray= baseUrlArray;
     }
 }
